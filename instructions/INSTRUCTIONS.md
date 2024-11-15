@@ -18,14 +18,14 @@ You will be using Astro, Shadcn, TailwindCSS, Lucide Icons, and TypeScript. Blog
 - Create a responsive clean, modern design that speaks to a Gen X audience.
 
 ## Documentation
-Astro: https://docs.astro.build/en/
-Astro & Hashnode: https://docs.astro.build/en/guides/cms/hashnode/
-Shadcn: https://ui.shadcn.com/docs
-TailwindCSS: https://tailwindcss.com/docs
-Lucide Icons: https://lucide.dev/icons/
-Typescript: https://www.typescriptlang.org/docs/
+- Astro: https://docs.astro.build/en/
+- Astro & Hashnode: https://docs.astro.build/en/guides/cms/hashnode/
+- Shadcn: https://ui.shadcn.com/docs
+- TailwindCSS: https://tailwindcss.com/docs
+- Lucide Icons: https://lucide.dev/icons/
+- Typescript: https://www.typescriptlang.org/docs/
 
-# Current File Structure
+## Current File Structure
 
 CREATOR-HOME2/
 ├── .vscode/
