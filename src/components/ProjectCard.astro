@@ -1,0 +1,29 @@
+---
+import { ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+interface Props {
+  title: string;
+  description: string;
+  url: string;
+  icon?: string;
+}
+
+const { title, description, url, icon = "🚀" } = Astro.props;
+---
+
+<div class="flex items-start gap-4">
+  <span class="text-xl">{icon}</span>
+  <div>
+    <h3 class="text-xl font-semibold">{title}</h3>
+    <p class="text-muted-foreground mb-3">{description}</p>
+    <a 
+      href={url} 
+      target="_blank" 
+      class="inline-flex items-center gap-1 text-blue-500 hover:text-blue-600 font-medium"
+    >
+      View Project
+      <ExternalLink className="w-4 h-4" />
+    </a>
+  </div>
+</div> 

@@ -1,0 +1,26 @@
+---
+import { Twitter, Github, Linkedin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+---
+
+<footer class="py-8 border-t">
+  <div class="container mx-auto px-4 max-w-5xl">
+    <div class="flex justify-center gap-4">
+      <Button variant="ghost" size="icon" asChild>
+        <a href="https://x.com/username" aria-label="Twitter">
+          <Twitter className="w-5 h-5" />
+        </a>
+      </Button>
+      <Button variant="ghost" size="icon" asChild>
+        <a href="https://github.com/username" aria-label="GitHub">
+          <Github className="w-5 h-5" />
+        </a>
+      </Button>
+      <Button variant="ghost" size="icon" asChild>
+        <a href="https://linkedin.com/in/username" aria-label="LinkedIn">
+          <Linkedin className="w-5 h-5" />
+        </a>
+      </Button>
+    </div>
+  </div>
+</footer> 

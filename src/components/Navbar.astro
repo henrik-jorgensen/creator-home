@@ -1,0 +1,56 @@
+---
+const currentPath = new URL(Astro.request.url).pathname;
+
+function isCurrentPage(path: string): boolean {
+  if (path === '/' && currentPath === '/') return true;
+  if (path !== '/' && currentPath.startsWith(path)) return true;
+  return false;
+}
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<nav class="border-b">
+  <div class="container mx-auto px-4 py-6 max-w-5xl">
+    <div class="flex justify-between items-center">
+      <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
+        <img 
+          src="/images/profile/Avatar.jpg"
+          srcset="/images/profile/Avatar.jpg 1x, /images/profile/Avatar2.jpg 2x"
+          alt="Henrik" 
+          class="w-10 h-10 rounded-full"
+          width="40"
+          height="40"
+        />
+        <span class="text-2xl font-bold">Henrik's Home</span>
+      </a>
+      
+      <div class="flex gap-6">
+        {navItems.map(({ href, label }) => (
+          <a 
+            href={href}
+            class={`
+              relative text-sm font-medium py-1
+              ${isCurrentPage(href) 
+                ? 'text-primary' 
+                : 'text-muted-foreground hover:text-primary'
+              }
+              before:absolute before:inset-x-0 before:bottom-0 before:h-0.5
+              before:bg-primary before:origin-left before:scale-x-0
+              before:transition-transform before:duration-300 before:ease-out
+              hover:before:scale-x-100
+              ${isCurrentPage(href) ? 'before:scale-x-100' : ''}
+            `}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</nav> 
