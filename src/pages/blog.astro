@@ -3,63 +3,20 @@ import Layout from '../layouts/Layout.astro';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import type { BlogPost } from '../types/BlogPost';
+import { getHashnodePosts } from '../utils/getHashnodePosts';
 
-interface ExtendedBlogPost extends BlogPost {
-  tag: string;
-}
-
-const posts: ExtendedBlogPost[] = [
-  {
-    title: "Social media growth in 2024",
-    brief: "A deep dive into the most effective strategies for growing your social media presence in 2024.",
-    slug: "social-media-growth-2024",
-    dateAdded: "2024-11-16",
-    tag: "Tibo's blog"
-  },
-  {
-    title: "This advice can save your business",
-    brief: "Key insights and lessons learned from building and selling multiple SaaS products.",
-    slug: "business-advice",
-    dateAdded: "2024-11-16",
-    tag: "Tibo's blog"
-  },
-  {
-    title: "Productivity as a Dad",
-    brief: "How I manage to stay productive while balancing family life and multiple businesses.",
-    slug: "productivity-as-dad",
-    dateAdded: "2024-11-16",
-    tag: "Tibo's blog"
-  },
-  {
-    title: "I just lost $20,000",
-    brief: "An honest look at a recent failure and what I learned from it.",
-    slug: "startup-failure",
-    dateAdded: "2024-11-07",
-    tag: "Tibo's blog"
-  },
-  {
-    title: "Why am I building 5 companies at once?",
-    brief: "The strategy and reasoning behind my current ventures.",
-    slug: "building-five-companies",
-    dateAdded: "2024-10-31",
-    tag: "Tibo's blog"
-  },
-  {
-    title: "A New Era Begins!",
-    brief: "Starting a new chapter in my entrepreneurial journey.",
-    slug: "new-era",
-    dateAdded: "2024-10-24",
-    tag: "Tibo's blog"
-  }
-];
-
+// Add formatDate function
 function formatDate(dateString: string) {
-  return new Date(dateString).toLocaleDateString('en-US', {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
     month: 'short',
-    day: 'numeric',
-    year: 'numeric'
+    day: 'numeric'
   });
 }
+
+// Fetch posts
+const posts = await getHashnodePosts();
 ---
 
 <Layout title="Blog - Henrik's home">
@@ -73,7 +30,7 @@ function formatDate(dateString: string) {
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map((post) => (
         <div class="flex flex-col">
-          <a href={`/blog/${post.slug}`} class="group">
+          <a href={post.url} class="group">
             <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow p-5">
               <!-- Date (without dot) -->
               <div class="text-xs text-muted-foreground mb-3">
@@ -84,6 +41,9 @@ function formatDate(dateString: string) {
               <h2 class="text-lg font-semibold group-hover:text-primary transition-colors">
                 {post.title}
               </h2>
+
+              <!-- Brief description -->
+              <p class="text-sm text-muted-foreground mt-2">{post.brief}</p>
 
               <!-- Author -->
               <div class="flex items-center gap-2 mt-3">

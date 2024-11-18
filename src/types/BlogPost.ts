@@ -4,4 +4,6 @@ export interface BlogPost {
   slug: string;
   dateAdded: string;
   coverImage?: string;
+  url: string;
+  readTimeInMinutes: number;
 } 
