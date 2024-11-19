@@ -31,31 +31,44 @@ const posts = await getHashnodePosts();
       {posts.map((post) => (
         <div class="flex flex-col">
           <a href={post.url} class="group">
-            <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow p-5">
-              <!-- Date (without dot) -->
-              <div class="text-xs text-muted-foreground mb-3">
-                {formatDate(post.dateAdded)}
-              </div>
+            <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow">
+              {/* Cover Image */}
+              {post.coverImage && (
+                <div class="relative w-full pt-[56.25%]"> {/* 16:9 aspect ratio */}
+                  <img
+                    src={post.coverImage.url}
+                    alt={post.title}
+                    class="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+                  />
+                </div>
+              )}
+              
+              <div class="p-5">
+                {/* Date */}
+                <div class="text-xs text-muted-foreground mb-3">
+                  {formatDate(post.dateAdded)}
+                </div>
 
-              <!-- Title -->
-              <h2 class="text-lg font-semibold group-hover:text-primary transition-colors">
-                {post.title}
-              </h2>
+                {/* Title */}
+                <h2 class="text-lg font-semibold group-hover:text-primary transition-colors">
+                  {post.title}
+                </h2>
 
-              <!-- Brief description -->
-              <p class="text-sm text-muted-foreground mt-2">{post.brief}</p>
+                {/* Brief description */}
+                <p class="text-sm text-muted-foreground mt-2">{post.brief}</p>
 
-              <!-- Author -->
-              <div class="flex items-center gap-2 mt-3">
-                <img 
-                  src="/images/profile/Avatar.jpg"
-                  srcset="/images/profile/Avatar.jpg 1x, /images/profile/Avatar2.jpg 2x"
-                  alt="Henrik" 
-                  class="w-4 h-4 rounded-full"
-                  width="16"
-                  height="16"
-                />
-                <span class="text-xs text-muted-foreground">written by Henrik</span>
+                {/* Author */}
+                <div class="flex items-center gap-2 mt-3">
+                  <img 
+                    src="/images/profile/Avatar.jpg"
+                    srcset="/images/profile/Avatar.jpg 1x, /images/profile/Avatar2.jpg 2x"
+                    alt="Henrik" 
+                    class="w-4 h-4 rounded-full"
+                    width="16"
+                    height="16"
+                  />
+                  <span class="text-xs text-muted-foreground">written by Henrik</span>
+                </div>
               </div>
             </div>
           </a>

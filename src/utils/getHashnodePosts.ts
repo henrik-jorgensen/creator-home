@@ -1,12 +1,25 @@
 import type { BlogPost } from '../types/BlogPost';
 
 export async function getHashnodePosts(): Promise<BlogPost[]> {
-  const username = import.meta.env.PUBLIC_HASHNODE_USERNAME;
-  
-  if (!username) {
-    console.error('PUBLIC_HASHNODE_USERNAME environment variable is not set');
-    return [];
-  }
+  const query = `
+    query Publication {
+      publication(host: "${import.meta.env.PUBLIC_HASHNODE_HOST}") {
+        posts(first: 10) {
+          edges {
+            node {
+              title
+              brief
+              url
+              publishedAt
+              coverImage {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
 
   try {
     const response = await fetch('https://gql.hashnode.com', {
@@ -14,56 +27,25 @@ export async function getHashnodePosts(): Promise<BlogPost[]> {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        query: `
-          query GetUserArticles($username: String!) {
-            user(username: $username) {
-              posts(page: 1, pageSize: 10) {
-                nodes {
-                  title
-                  brief
-                  slug
-                  publishedAt
-                  coverImage {
-                    url
-                  }
-                  url
-                  readTimeInMinutes
-                }
-                pageInfo {
-                  hasNextPage
-                  nextPage
-                }
-              }
-            }
-          }
-        `,
-        variables: {
-          username
-        }
-      }),
+      body: JSON.stringify({ query }),
     });
 
-    const json = await response.json();
+    const data = await response.json();
     
-    if (!json.data?.user?.posts?.nodes) {
-      console.error('Invalid response structure:', json);
+    if (data.errors) {
+      console.error('Hashnode API Errors:', data.errors);
       return [];
     }
 
-    return json.data.user.posts.nodes.map(
-      (node: any) => ({
-        title: node.title,
-        brief: node.brief,
-        slug: node.slug,
-        dateAdded: node.publishedAt,
-        coverImage: node.coverImage?.url,
-        url: node.url,
-        readTimeInMinutes: node.readTimeInMinutes
-      })
-    );
+    return data.data.publication.posts.edges.map(({ node }: any) => ({
+      title: node.title,
+      brief: node.brief,
+      url: node.url,
+      dateAdded: node.publishedAt,
+      coverImage: node.coverImage
+    }));
   } catch (error) {
-    console.error('Error fetching Hashnode posts:', error);
+    console.error('Error fetching posts:', error);
     return [];
   }
 } 
