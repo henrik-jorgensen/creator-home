@@ -28,37 +28,50 @@ const posts = await getHashnodePosts();
 
     <!-- Blog Posts -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post) => (
-        <div class="flex flex-col h-full">
-          <a href={post.url} class="group h-full">
-            <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow h-full flex flex-col">
-              {/* Cover Image - reduced height */}
-              {post.coverImage && (
-                <div class="relative w-full pt-[35%]">
-                  <img
-                    src={post.coverImage.url}
-                    alt={post.title}
-                    class="absolute inset-0 w-full h-full object-cover rounded-t-lg"
-                  />
-                </div>
-              )}
-              
-              <div class="p-4 flex flex-col h-full">
-                {/* Title */}
-                <h2 class="text-base font-medium group-hover:text-primary transition-colors">
-                  {post.title}
-                </h2>
+      {posts.map((post, index) => {
+        // Calculate row number based on screen size
+        const mobileRow = index;
+        const tabletRow = Math.floor(index / 2);
+        const desktopRow = Math.floor(index / 3);
+        
+        return (
+          <div 
+            class="flex flex-col h-full opacity-0 animate-fade-up"
+            style={`animation-delay: ${mobileRow * 100}ms; 
+                    @media (min-width: 768px) { animation-delay: ${tabletRow * 100}ms; }
+                    @media (min-width: 1024px) { animation-delay: ${desktopRow * 100}ms; }; 
+                    animation-fill-mode: forwards;`}
+          >
+            <a href={post.url} class="group h-full">
+              <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow h-full flex flex-col">
+                {/* Cover Image - reduced height */}
+                {post.coverImage && (
+                  <div class="relative w-full pt-[35%]">
+                    <img
+                      src={post.coverImage.url}
+                      alt={post.title}
+                      class="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+                    />
+                  </div>
+                )}
+                
+                <div class="p-4 flex flex-col h-full">
+                  {/* Title */}
+                  <h2 class="text-base font-medium group-hover:text-primary transition-colors">
+                    {post.title}
+                  </h2>
 
-                {/* Meta info - pushed to bottom */}
-                <div class="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-4">
-                  <span>{formatDate(post.dateAdded)}</span>
-                  <span>{post.readTimeInMinutes} min read</span>
+                  {/* Meta info - pushed to bottom */}
+                  <div class="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-4">
+                    <span>{formatDate(post.dateAdded)}</span>
+                    <span>{post.readTimeInMinutes} min read</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-        </div>
-      ))}
+            </a>
+          </div>
+        );
+      })}
     </div>
 
     <!-- Load More -->
