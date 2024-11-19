@@ -20,21 +20,21 @@ const posts = await getHashnodePosts();
 ---
 
 <Layout title="Blog - Henrik's home">
-  <main class="container mx-auto px-4 py-16 max-w-7xl">
+  <main class="container mx-auto px-4 py-12 max-w-5xl">
     <!-- All Tags -->
-    <div class="mb-8">
+    <div class="mb-6">
       <Button variant="link" className="text-pink-500 hover:text-pink-600 p-0">All Tags</Button>
     </div>
 
     <!-- Blog Posts -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {posts.map((post) => (
-        <div class="flex flex-col">
-          <a href={post.url} class="group">
-            <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow">
+        <div class="flex flex-col h-full">
+          <a href={post.url} class="group h-full">
+            <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow h-full flex flex-col">
               {/* Cover Image */}
               {post.coverImage && (
-                <div class="relative w-full pt-[56.25%]"> {/* 16:9 aspect ratio */}
+                <div class="relative w-full pt-[40%]">
                   <img
                     src={post.coverImage.url}
                     alt={post.title}
@@ -43,31 +43,16 @@ const posts = await getHashnodePosts();
                 </div>
               )}
               
-              <div class="p-5">
-                {/* Date */}
-                <div class="text-xs text-muted-foreground mb-3">
-                  {formatDate(post.dateAdded)}
-                </div>
-
+              <div class="p-4 flex flex-col h-full">
                 {/* Title */}
-                <h2 class="text-lg font-semibold group-hover:text-primary transition-colors">
+                <h2 class="text-base font-medium group-hover:text-primary transition-colors">
                   {post.title}
                 </h2>
 
-                {/* Brief description */}
-                <p class="text-sm text-muted-foreground mt-2">{post.brief}</p>
-
-                {/* Author */}
-                <div class="flex items-center gap-2 mt-3">
-                  <img 
-                    src="/images/profile/Avatar.jpg"
-                    srcset="/images/profile/Avatar.jpg 1x, /images/profile/Avatar2.jpg 2x"
-                    alt="Henrik" 
-                    class="w-4 h-4 rounded-full"
-                    width="16"
-                    height="16"
-                  />
-                  <span class="text-xs text-muted-foreground">written by Henrik</span>
+                {/* Meta info - pushed to bottom */}
+                <div class="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-4">
+                  <span>{formatDate(post.dateAdded)}</span>
+                  <span>{post.readTimeInMinutes} min read</span>
                 </div>
               </div>
             </div>
@@ -77,7 +62,7 @@ const posts = await getHashnodePosts();
     </div>
 
     <!-- Load More -->
-    <div class="mt-12 text-center">
+    <div class="mt-8 text-center">
       <Button variant="ghost" className="gap-2">
         Load More
         <ChevronDown className="w-4 h-4" />

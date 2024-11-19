@@ -4,13 +4,14 @@ export async function getHashnodePosts(): Promise<BlogPost[]> {
   const query = `
     query Publication {
       publication(host: "${import.meta.env.PUBLIC_HASHNODE_HOST}") {
-        posts(first: 10) {
+        posts(first: 12) {
           edges {
             node {
               title
               brief
               url
               publishedAt
+              readTimeInMinutes
               coverImage {
                 url
               }
@@ -42,7 +43,8 @@ export async function getHashnodePosts(): Promise<BlogPost[]> {
       brief: node.brief,
       url: node.url,
       dateAdded: node.publishedAt,
-      coverImage: node.coverImage
+      coverImage: node.coverImage,
+      readTimeInMinutes: node.readTimeInMinutes
     }));
   } catch (error) {
     console.error('Error fetching posts:', error);

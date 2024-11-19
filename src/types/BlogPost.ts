@@ -3,7 +3,8 @@ export interface BlogPost {
   brief: string;
   url: string;
   dateAdded: string;
-  coverImage: {
+  coverImage?: {
     url: string;
-  } | null;
+  };
+  readTimeInMinutes: number;
 } 
