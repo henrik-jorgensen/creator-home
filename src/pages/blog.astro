@@ -32,9 +32,9 @@ const posts = await getHashnodePosts();
         <div class="flex flex-col h-full">
           <a href={post.url} class="group h-full">
             <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow h-full flex flex-col">
-              {/* Cover Image */}
+              {/* Cover Image - reduced height */}
               {post.coverImage && (
-                <div class="relative w-full pt-[40%]">
+                <div class="relative w-full pt-[35%]">
                   <img
                     src={post.coverImage.url}
                     alt={post.title}
