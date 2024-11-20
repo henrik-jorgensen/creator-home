@@ -1,14 +1,19 @@
 import type { BlogPost } from '../types/BlogPost';
 
-export async function getHashnodePosts(): Promise<BlogPost[]> {
+interface HashnodeResponse {
+  articles: BlogPost[];
+  endCursor: string;
+  hasNextPage: boolean;
+}
+
+export async function getHashnodePosts(cursor = ''): Promise<HashnodeResponse> {
   const query = `
-    query Publication {
+    query GetUserArticles($cursor: String) {
       publication(host: "${import.meta.env.PUBLIC_HASHNODE_HOST}") {
-        posts(first: 12) {
+        posts(first: 12, after: $cursor) {
           edges {
             node {
               title
-              brief
               url
               publishedAt
               readTimeInMinutes
@@ -16,11 +21,17 @@ export async function getHashnodePosts(): Promise<BlogPost[]> {
                 url
               }
             }
+            cursor
+          }
+          pageInfo {
+            hasNextPage
           }
         }
       }
     }
   `;
+
+  const variables = { cursor: cursor || null };
 
   try {
     const response = await fetch('https://gql.hashnode.com', {
@@ -28,26 +39,32 @@ export async function getHashnodePosts(): Promise<BlogPost[]> {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query, variables }),
     });
 
     const data = await response.json();
     
     if (data.errors) {
       console.error('Hashnode API Errors:', data.errors);
-      return [];
+      return { articles: [], endCursor: '', hasNextPage: false };
     }
 
-    return data.data.publication.posts.edges.map(({ node }: any) => ({
-      title: node.title,
-      brief: node.brief,
-      url: node.url,
-      dateAdded: node.publishedAt,
-      coverImage: node.coverImage,
-      readTimeInMinutes: node.readTimeInMinutes
-    }));
+    const posts = data.data.publication.posts;
+    const lastEdge = posts.edges[posts.edges.length - 1];
+    
+    return {
+      articles: posts.edges.map(({ node }: any) => ({
+        title: node.title,
+        url: node.url,
+        dateAdded: node.publishedAt,
+        coverImage: node.coverImage,
+        readTimeInMinutes: node.readTimeInMinutes
+      })),
+      endCursor: lastEdge?.cursor || '',
+      hasNextPage: posts.pageInfo.hasNextPage
+    };
   } catch (error) {
     console.error('Error fetching posts:', error);
-    return [];
+    return { articles: [], endCursor: '', hasNextPage: false };
   }
 } 

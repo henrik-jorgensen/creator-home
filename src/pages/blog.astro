@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 import type { BlogPost } from '../types/BlogPost';
 import { getHashnodePosts } from '../utils/getHashnodePosts';
+import { getAnimationStyles, postAnimationClass } from '../utils/animatePost';
 
 // Add formatDate function
 function formatDate(dateString: string) {
@@ -15,32 +16,21 @@ function formatDate(dateString: string) {
   });
 }
 
-// Fetch posts
-const posts = await getHashnodePosts();
+// Fetch initial posts
+const { articles: initialPosts, endCursor, hasNextPage } = await getHashnodePosts();
 ---
 
 <Layout title="Blog - Henrik's home">
   <main class="container mx-auto px-4 py-12 max-w-5xl">
-    <!-- All Tags -->
-    <div class="mb-6">
-      <Button variant="link" className="text-pink-500 hover:text-pink-600 p-0">All Tags</Button>
-    </div>
-
     <!-- Blog Posts -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post, index) => {
-        // Calculate row number based on screen size
-        const mobileRow = index;
-        const tabletRow = Math.floor(index / 2);
-        const desktopRow = Math.floor(index / 3);
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="posts-grid">
+      {initialPosts.map((post, index) => {
+        const delays = getAnimationStyles(index);
         
         return (
           <div 
-            class="flex flex-col h-full opacity-0 animate-fade-up"
-            style={`animation-delay: ${mobileRow * 100}ms; 
-                    @media (min-width: 768px) { animation-delay: ${tabletRow * 100}ms; }
-                    @media (min-width: 1024px) { animation-delay: ${desktopRow * 100}ms; }; 
-                    animation-fill-mode: forwards;`}
+            class={postAnimationClass}
+            style={delays}
           >
             <a href={post.url} class="group h-full">
               <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow h-full flex flex-col">
@@ -75,11 +65,101 @@ const posts = await getHashnodePosts();
     </div>
 
     <!-- Load More -->
-    <div class="mt-8 text-center">
-      <Button variant="ghost" className="gap-2">
-        Load More
-        <ChevronDown className="w-4 h-4" />
-      </Button>
-    </div>
+    {hasNextPage && (
+      <div class="mt-8 text-center">
+        <Button 
+          variant="ghost" 
+          className="gap-2" 
+          id="load-more-button"
+          data-cursor={endCursor}
+        >
+          <span class="inline-flex items-center gap-2">
+            Load More
+            <ChevronDown className="w-4 h-4" />
+            <div id="loading-spinner" class="hidden w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+          </span>
+        </Button>
+      </div>
+    )}
   </main>
-</Layout> 
+</Layout>
+
+<script>
+  import type { BlogPost } from '../types/BlogPost';
+  import { getAnimationStyles, postAnimationClass } from '../utils/animatePost';
+  
+  const loadMoreButton = document.getElementById('load-more-button');
+  const blogList = document.getElementById('posts-grid');
+  const loadingSpinner = document.getElementById('loading-spinner');
+
+  if (loadMoreButton && blogList && loadingSpinner) {
+    loadMoreButton.addEventListener('click', async () => {
+      loadingSpinner.classList.remove('hidden');
+      loadMoreButton.setAttribute('disabled', 'true');
+
+      try {
+        const cursor = loadMoreButton.getAttribute('data-cursor');
+        const response = await fetch(`/api/articles?cursor=${encodeURIComponent(cursor || '')}`);
+        const data = await response.json();
+
+        // Create and append elements with proper animation timing
+        const currentCount = blogList.children.length;
+        
+        data.articles.forEach((article: BlogPost, i: number) => {
+          const div = document.createElement('div');
+          div.className = postAnimationClass;
+          div.style.cssText = getAnimationStyles(currentCount + i);
+
+          div.innerHTML = `
+            <a href="${article.url}" class="group h-full">
+              <div class="bg-[#F6F7F8] dark:bg-zinc-900 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow h-full flex flex-col">
+                ${article.coverImage ? `
+                  <div class="relative w-full pt-[35%]">
+                    <img
+                      src="${article.coverImage.url}"
+                      alt="${article.title}"
+                      class="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+                    />
+                  </div>
+                ` : ''}
+                <div class="p-4 flex flex-col h-full">
+                  <h2 class="text-base font-medium group-hover:text-primary transition-colors">
+                    ${article.title}
+                  </h2>
+                  <div class="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-4">
+                    <span>${formatDate(article.dateAdded)}</span>
+                    <span>${article.readTimeInMinutes} min read</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          `;
+
+          blogList.appendChild(div);
+        });
+
+        if (data.endCursor) {
+          loadMoreButton.setAttribute('data-cursor', data.endCursor);
+        }
+
+        if (!data.hasNextPage) {
+          loadMoreButton.style.display = 'none';
+        }
+      } catch (error) {
+        console.error('Error loading more posts:', error);
+      } finally {
+        loadingSpinner.classList.add('hidden');
+        loadMoreButton.removeAttribute('disabled');
+      }
+    });
+  }
+
+  function formatDate(dateString: string) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  }
+</script> 
