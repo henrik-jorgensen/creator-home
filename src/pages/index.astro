@@ -22,18 +22,96 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
         <p class="text-muted-foreground">Weekly insights from starting over and becoming an AI-powered maker</p>
       </div>
       <div class="max-w-xl mx-auto">
-        <form class="flex gap-2">
+        <form 
+          id="newsletter-form" 
+          class="flex gap-2"
+        >
           <input 
             type="email" 
+            name="email"
             placeholder="Enter your email address" 
             class="flex-1 h-10 px-4 rounded-md bg-background ring-1 ring-input"
             required
           />
-          <Button type="submit" variant="default" className="h-10">Subscribe</Button>
+          <Button 
+            type="submit" 
+            variant="default" 
+            className="h-10"
+            id="submit-button"
+          >
+            Subscribe
+          </Button>
         </form>
-        <p class="text-sm text-muted-foreground mt-2 text-center">No spam. Unsubscribe at any time.</p>
+        <p 
+          id="form-message" 
+          class="text-sm mt-2 text-center hidden"
+        ></p>
+        <p class="text-sm text-muted-foreground mt-2 text-center">
+          No spam. Unsubscribe at any time.
+        </p>
       </div>
     </section>
+
+    <script>
+      const form = document.getElementById('newsletter-form') as HTMLFormElement;
+      const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
+      const messageElement = document.getElementById('form-message') as HTMLParagraphElement;
+
+      if (form && submitButton && messageElement) {
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          
+          const originalButtonText = submitButton.textContent || 'Subscribe';
+          
+          // Reset message
+          messageElement.className = 'text-sm mt-2 text-center hidden';
+          messageElement.textContent = '';
+          
+          // Show loading state
+          submitButton.textContent = 'Subscribing...';
+          submitButton.disabled = true;
+          
+          try {
+            const formData = new FormData(form);
+            const email = formData.get('email');
+            console.log('Submitting email:', email); // Debug log
+            
+            const response = await fetch('/api/newsletter-subscribe', {
+              method: 'POST',
+              body: JSON.stringify({ email }),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+            
+            console.log('Response status:', response.status); // Debug log
+            const data = await response.json();
+            console.log('Response data:', data); // Debug log
+            
+            // Show message
+            messageElement.classList.remove('hidden');
+            
+            if (response.ok) {
+              messageElement.className = 'text-sm mt-2 text-center text-green-600';
+              messageElement.textContent = data.message;
+              form.reset();
+            } else {
+              messageElement.className = 'text-sm mt-2 text-center text-red-600';
+              messageElement.textContent = data.message || 'Failed to subscribe';
+            }
+          } catch (error) {
+            console.error('Submission error:', error);
+            messageElement.classList.remove('hidden');
+            messageElement.className = 'text-sm mt-2 text-center text-red-600';
+            messageElement.textContent = 'An error occurred. Please try again later.';
+          } finally {
+            // Reset button state
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+          }
+        });
+      }
+    </script>
 
     <!-- Dumb Things I've Built -->
     <section class="mb-24">
