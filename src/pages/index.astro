@@ -9,8 +9,10 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
   <main class="container mx-auto px-4 py-16 max-w-5xl">
     <!-- Hero Section -->
     <section class="mb-24 text-center">
-      <h1 class="text-4xl font-bold mb-4">Hey 👋 I am Henrik</h1>
-      <p class="text-lg text-muted-foreground">
+      <h1 class="text-4xl font-bold mb-4 opacity-0 animate-fade-up" style="animation-delay: 100ms">
+        Hey <span class="inline-block animate-wave">👋</span> I am Henrik
+      </h1>
+      <p class="text-lg text-muted-foreground opacity-0 animate-fade-up" style="animation-delay: 200ms">
         I make products with the help of AI assistants. Here's my journey and what I'm working on.
       </p>
     </section>
@@ -21,18 +23,18 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
       <img 
         src="/images/brushStroke2.svg"
         alt=""
-        class="absolute left-1/2 -translate-x-1/2 w-[120%] max-w-none"
+        class="absolute left-1/2 -translate-x-1/2 w-[120%] max-w-none opacity-0 animate-brush-intro"
         style="top: -10%; height: 120%;"
         inert
       />
 
       <!-- Newsletter content -->
       <section class="relative">
-        <div class="text-center mb-8">
+        <div class="text-center mb-8 opacity-0 animate-fade-up" style="animation-delay: 300ms">
           <h2 class="text-2xl font-bold mb-2">The Gen X Maker Newsletter</h2>
           <p class="text-muted-foreground">Weekly insights from starting over and becoming an AI-powered maker</p>
         </div>
-        <div class="max-w-xl mx-auto">
+        <div class="max-w-xl mx-auto opacity-0 animate-fade-up" style="animation-delay: 400ms">
           <form 
             id="newsletter-form" 
             class="flex gap-2"
@@ -41,13 +43,13 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
               type="email" 
               name="email"
               placeholder="Enter your email address" 
-              class="flex-1 h-10 px-4 rounded-md bg-background ring-1 ring-input"
+              class="flex-1 h-10 px-4 rounded-md bg-background ring-1 ring-input transition-all duration-300 focus:ring-2 focus:ring-primary"
               required
             />
             <Button 
               type="submit" 
               variant="default" 
-              className="h-10"
+              className="h-10 relative overflow-hidden transition-transform hover:scale-105"
               id="submit-button"
             >
               Subscribe
@@ -134,21 +136,39 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
           }
         });
       }
+
+      // Add intersection observer for project cards
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-up');
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      }, {
+        threshold: 0.1, // Start animation when 10% of the element is visible
+        rootMargin: '50px' // Start animation slightly before the element comes into view
+      });
+
+      // Observe all project cards
+      document.querySelectorAll('.project-card').forEach(card => {
+        observer.observe(card);
+      });
     </script>
 
     <!-- Dumb Things I've Built -->
     <section class="mb-24">
-      <h2 class="text-2xl font-bold mb-6">Dumb Things I've Built</h2>
+      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Dumb Things I've Built</h2>
       <div class="space-y-8">
-        <div class="flex items-start gap-4">
-          <span class="text-xl">🚀</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
+          <span class="text-xl animate-bounce-once">🚀</span>
           <div>
             <h3 class="font-semibold mb-2">TweetHunter Clone</h3>
             <p class="text-muted-foreground">Built and failed spectacularly. Learned a ton about Twitter API.</p>
           </div>
         </div>
-        <div class="flex items-start gap-4">
-          <span class="text-xl">💡</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 300ms">
+          <span class="text-xl animate-bounce-once">💡</span>
           <div>
             <h3 class="font-semibold mb-2">AI Meme Generator</h3>
             <p class="text-muted-foreground">Generated 1000+ memes. Nobody used it. Great learning experience!</p>
@@ -159,17 +179,17 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 
     <!-- Current Focus -->
     <section class="mb-24">
-      <h2 class="text-2xl font-bold mb-6">Current Focus</h2>
+      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Current Focus</h2>
       <div class="space-y-8">
-        <div class="flex items-start gap-4">
-          <span class="text-xl">🎯</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
+          <span class="text-xl animate-bounce-once">🎯</span>
           <div>
             <h3 class="font-semibold mb-2">Building revid.ai</h3>
             <p class="text-muted-foreground">Creating an AI-powered video generation platform for creators</p>
           </div>
         </div>
-        <div class="flex items-start gap-4">
-          <span class="text-xl">📈</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 300ms">
+          <span class="text-xl animate-bounce-once">📈</span>
           <div>
             <h3 class="font-semibold mb-2">Growing SuperX.so</h3>
             <p class="text-muted-foreground">Helping creators grow their Twitter presence</p>
@@ -180,9 +200,9 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 
     <!-- Work with Me -->
     <section class="mb-24">
-      <h2 class="text-2xl font-bold mb-6">Work with Me</h2>
-      <div class="flex items-start gap-4">
-        <span class="text-xl">🤝</span>
+      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Work with Me</h2>
+      <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
+        <span class="text-xl animate-bounce-once">🤝</span>
         <div>
           <p class="text-muted-foreground mb-4">I'm available for AI product consulting and technical advisory roles.</p>
           <Button asChild>
@@ -197,10 +217,10 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 
     <!-- Free Resources and Guides -->
     <section class="mb-24">
-      <h2 class="text-2xl font-bold mb-6">Free Resources & Guides</h2>
+      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Free Resources & Guides</h2>
       <div class="space-y-8">
-        <div class="flex items-start gap-4">
-          <span class="text-xl">📚</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
+          <span class="text-xl animate-bounce-once">📚</span>
           <div>
             <h3 class="font-semibold mb-2">AI Product Launch Playbook</h3>
             <p class="text-muted-foreground mb-2">A step-by-step guide to launching AI products</p>
@@ -210,8 +230,8 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
             </a>
           </div>
         </div>
-        <div class="flex items-start gap-4">
-          <span class="text-xl">🎥</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 300ms">
+          <span class="text-xl animate-bounce-once">🎥</span>
           <div>
             <h3 class="font-semibold mb-2">Video Creation Guide</h3>
             <p class="text-muted-foreground mb-2">Learn how to create viral short-form videos</p>
@@ -226,10 +246,10 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 
     <!-- My Product Stack -->
     <section class="mb-24">
-      <h2 class="text-2xl font-bold mb-6">My Product Stack</h2>
+      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">My Product Stack</h2>
       <div class="space-y-6">
-        <div class="flex items-start gap-4">
-          <span class="text-xl">⚡</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
+          <span class="text-xl animate-bounce-once">⚡</span>
           <div>
             <h3 class="font-semibold mb-1">
               Framework: 
@@ -245,29 +265,29 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
             <p class="text-sm text-muted-foreground">Build fast content-focused websites</p>
           </div>
         </div>
-        <div class="flex items-start gap-4">
-          <span class="text-xl">🎨</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 300ms">
+          <span class="text-xl animate-bounce-once">🎨</span>
           <div>
             <h3 class="font-semibold mb-1">UI Components: <a href="https://ui.shadcn.com" target="_blank" class="text-blue-500 hover:underline">shadcn/ui</a></h3>
             <p class="text-sm text-muted-foreground">Beautifully designed components built with Radix UI and Tailwind</p>
           </div>
         </div>
-        <div class="flex items-start gap-4">
-          <span class="text-xl">🎯</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 400ms">
+          <span class="text-xl animate-bounce-once">🎯</span>
           <div>
             <h3 class="font-semibold mb-1">Styling: <a href="https://tailwindcss.com" target="_blank" class="text-blue-500 hover:underline">TailwindCSS</a></h3>
             <p class="text-sm text-muted-foreground">A utility-first CSS framework for rapid UI development</p>
           </div>
         </div>
-        <div class="flex items-start gap-4">
-          <span class="text-xl">✨</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 500ms">
+          <span class="text-xl animate-bounce-once">✨</span>
           <div>
             <h3 class="font-semibold mb-1">Icons: <a href="https://lucide.dev" target="_blank" class="text-blue-500 hover:underline">Lucide Icons</a></h3>
             <p class="text-sm text-muted-foreground">Beautiful & consistent icons for your UI</p>
           </div>
         </div>
-        <div class="flex items-start gap-4">
-          <span class="text-xl">🔷</span>
+        <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 600ms">
+          <span class="text-xl animate-bounce-once">🔷</span>
           <div>
             <h3 class="font-semibold mb-1">Language: <a href="https://www.typescriptlang.org" target="_blank" class="text-blue-500 hover:underline">TypeScript</a></h3>
             <p class="text-sm text-muted-foreground">JavaScript with syntax for types</p>
@@ -296,5 +316,93 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
   @keyframes fadeOut {
     from { opacity: 1; transform: scale(1); }
     to { opacity: 0; transform: scale(0.95); }
+  }
+
+  /* Add wave animation for the hand emoji */
+  .animate-wave {
+    animation: wave 1.5s ease-in-out 800ms;
+    transform-origin: 70% 70%;
+  }
+
+  @keyframes wave {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+    60% { transform: rotate(10deg); }
+    80% { transform: rotate(-4deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  /* Replace animate-float with animate-brush-intro */
+  .animate-brush-intro {
+    animation: brushIntro 0.8s cubic-bezier(0.4, 0, 0.2, 1) 300ms forwards;
+  }
+
+  @keyframes brushIntro {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  /* Add shine effect for the subscribe button */
+  #submit-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transform: rotate(45deg);
+    animation: shine 3s ease-in-out infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+      transform: translateX(100%) rotate(45deg);
+    }
+  }
+
+  /* Smooth transition for input focus */
+  input:focus {
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  /* Add bounce animation for emojis */
+  .animate-bounce-once {
+    animation: bounce 0.6s cubic-bezier(0.36, 0, 0.66, -0.56) 500ms;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25%); }
+  }
+
+  /* Add hover animation for project cards */
+  .project-card {
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .project-card:hover .text-xl {
+    animation: bounce 0.6s cubic-bezier(0.36, 0, 0.66, -0.56);
   }
 </style>
