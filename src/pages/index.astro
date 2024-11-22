@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { NewsletterDialog } from '@/components/NewsletterDialog';
 import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 ---
 
@@ -23,7 +23,7 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
         alt=""
         class="absolute left-1/2 -translate-x-1/2 w-[120%] max-w-none"
         style="top: -10%; height: 120%;"
-        aria-hidden="true"
+        inert
       />
 
       <!-- Newsletter content -->
@@ -64,29 +64,37 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
       </section>
     </div>
 
+    <NewsletterDialog client:load />
+
     <script>
       const form = document.getElementById('newsletter-form') as HTMLFormElement;
       const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
-      const messageElement = document.getElementById('form-message') as HTMLParagraphElement;
 
-      if (form && submitButton && messageElement) {
+      function showDialog(success: boolean, title: string, message: string) {
+        document.dispatchEvent(
+          new CustomEvent('toggle-dialog', {
+            detail: {
+              open: true,
+              title,
+              message,
+              success
+            }
+          })
+        );
+      }
+
+      if (form && submitButton) {
         form.addEventListener('submit', async (event) => {
           event.preventDefault();
           
           const originalButtonText = submitButton.textContent || 'Subscribe';
-          
-          // Reset message
-          messageElement.className = 'text-sm mt-2 text-center hidden';
-          messageElement.textContent = '';
-          
-          // Show loading state
           submitButton.textContent = 'Subscribing...';
           submitButton.disabled = true;
           
           try {
             const formData = new FormData(form);
             const email = formData.get('email');
-            console.log('Submitting email:', email); // Debug log
+            console.log('Submitting email:', email);
             
             const response = await fetch('/api/newsletter-subscribe', {
               method: 'POST',
@@ -96,28 +104,31 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
               }
             });
             
-            console.log('Response status:', response.status); // Debug log
             const data = await response.json();
-            console.log('Response data:', data); // Debug log
-            
-            // Show message
-            messageElement.classList.remove('hidden');
+            console.log('Response:', data);
             
             if (response.ok) {
-              messageElement.className = 'text-sm mt-2 text-center text-green-600';
-              messageElement.textContent = data.message;
+              showDialog(
+                true,
+                "You're almost there! 🎉",
+                "Please check your inbox (and spam folder) to confirm your subscription. Can't wait to share my journey with you :)"
+              );
               form.reset();
             } else {
-              messageElement.className = 'text-sm mt-2 text-center text-red-600';
-              messageElement.textContent = data.message || 'Failed to subscribe';
+              showDialog(
+                false,
+                "Oops! Something went wrong",
+                data.message || "Failed to subscribe. Please try again later."
+              );
             }
           } catch (error) {
             console.error('Submission error:', error);
-            messageElement.classList.remove('hidden');
-            messageElement.className = 'text-sm mt-2 text-center text-red-600';
-            messageElement.textContent = 'An error occurred. Please try again later.';
+            showDialog(
+              false,
+              "Connection Error",
+              "We couldn't process your subscription. Please check your connection and try again."
+            );
           } finally {
-            // Reset button state
             submitButton.textContent = originalButtonText;
             submitButton.disabled = false;
           }
@@ -266,3 +277,24 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
     </section>
   </main>
 </Layout>
+
+<style>
+  /* Add styles for dialog animation */
+  [data-state='open'] {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  [data-state='closed'] {
+    animation: fadeOut 0.2s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+  }
+</style>
