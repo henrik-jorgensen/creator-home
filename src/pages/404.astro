@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Button } from '@/components/ui/button';
+import { Home } from 'lucide-react';
+---
+
+<Layout title="404 - Page Not Found">
+  <main class="container mx-auto px-4 py-16 max-w-5xl min-h-[60vh] flex items-center justify-center">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold mb-4">404: Digital Dead End</h1>
+      <div class="max-w-lg mx-auto">
+        <p class="text-xl text-muted-foreground mb-8">
+          Oops! Looks like this page pulled a Gen X move and decided to rebel against conformity. 
+          Maybe it's taking a coffee break or having an existential crisis.
+        </p>
+        <Button asChild size="lg">
+          <a href="/" class="inline-flex items-center gap-2">
+            <Home className="w-5 h-5" />
+            Back to Homepage
+          </a>
+        </Button>
+      </div>
+    </div>
+  </main>
+</Layout> 
