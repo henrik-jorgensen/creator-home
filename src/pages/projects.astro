@@ -28,9 +28,9 @@ const projects = [
 ---
 
 <Layout title="Cool Stuff - creator-home">
-  <main class="container mx-auto px-4 py-16 max-w-5xl">
+  <main class="container mx-auto px-4 pt-6 sm:pt-16 pb-16 max-w-5xl">
     <!-- Hero Section -->
-    <section class="mb-16">
+    <section class="mb-16 text-center">
       <h1 class="text-4xl font-bold mb-4 opacity-0 animate-fade-up" style="animation-delay: 100ms">Cool Stuff</h1>
       <p class="text-lg text-muted-foreground opacity-0 animate-fade-up" style="animation-delay: 200ms">
         A collection of things I've built and shipped. Some successful, some not so much - but each one has been a fun adventure and learning experience.
@@ -43,7 +43,7 @@ const projects = [
         <div class="flex items-start gap-4">
           <span class="text-xl animate-bounce-once">💡</span>
           <div>
-            <h2 class="text-xl font-bold mb-2">Have a project idea?</h2>
+            <h2 class="text-xl sm:text-2xl font-bold mb-2">Have a project idea?</h2>
             <p class="text-muted-foreground mb-3">
               I'm always interested in hearing about new projects and potential collaborations.
             </p>
@@ -61,7 +61,7 @@ const projects = [
 
     <!-- Active Projects -->
     <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-8 opacity-0 animate-fade-up" style="animation-delay: 400ms">Active Projects</h2>
+      <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 opacity-0 animate-fade-up" style="animation-delay: 400ms">Active Projects</h2>
       <div class="space-y-8">
         {projects.slice(0, 1).map((project, index) => (
           <div class="opacity-0 animate-fade-up" style={`animation-delay: ${500 + (index * 100)}ms`}>
@@ -72,8 +72,8 @@ const projects = [
     </section>
 
     <!-- Past Projects -->
-    <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-8 opacity-0 animate-fade-up" style="animation-delay: 600ms">Past Projects</h2>
+    <section class="mb-8 sm:mb-12">
+      <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 opacity-0 animate-fade-up" style="animation-delay: 600ms">Past Projects</h2>
       <div class="space-y-8">
         {projects.slice(1).map((project, index) => (
           <div class="opacity-0 animate-fade-up" style={`animation-delay: ${700 + (index * 100)}ms`}>
@@ -85,7 +85,7 @@ const projects = [
 
     <!-- Open Source -->
     <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-8 opacity-0 animate-fade-up" style="animation-delay: 800ms">Open Source</h2>
+      <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 opacity-0 animate-fade-up" style="animation-delay: 800ms">Open Source</h2>
       <div class="space-y-8">
         <div class="opacity-0 animate-fade-up" style="animation-delay: 900ms">
           <ProjectCard 

@@ -12,17 +12,19 @@ const { title, description, url, icon = "🚀" } = Astro.props;
 ---
 
 <div class="flex items-start gap-4">
-  <span class="text-xl">{icon}</span>
+  <span class="text-xl animate-bounce-once">{icon}</span>
   <div>
-    <h3 class="text-xl font-semibold">{title}</h3>
-    <p class="text-muted-foreground mb-3">{description}</p>
-    <a 
-      href={url} 
-      target="_blank" 
-      class="link-with-icon"
-    >
-      View Project
-      <ExternalLink className="w-4 h-4" />
-    </a>
+    <h3 class="font-semibold mb-2 text-base sm:text-lg">{title}</h3>
+    <p class="text-muted-foreground mb-2">{description}</p>
+    {url && (
+      <a 
+        href={url} 
+        class="link-with-icon"
+        target="_blank"
+      >
+        View Project
+        <ExternalLink className="w-4 h-4" />
+      </a>
+    )}
   </div>
 </div> 

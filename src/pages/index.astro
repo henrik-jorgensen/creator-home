@@ -6,9 +6,9 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 ---
 
 <Layout title="creator-home">
-  <main class="container mx-auto px-4 py-16 max-w-5xl">
+  <main class="container mx-auto px-4 pt-6 sm:pt-16 pb-16 max-w-5xl">
     <!-- Hero Section -->
-    <section class="mb-24 text-center">
+    <section class="mb-12 sm:mb-24 text-center">
       <h1 class="text-4xl font-bold mb-4 opacity-0 animate-fade-up" style="animation-delay: 100ms">
         Hey <span class="inline-block animate-wave">👋</span> I'm [your name]
       </h1>
@@ -18,45 +18,51 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
     </section>
 
     <!-- Newsletter Signup -->
-    <div class="relative py-16 mb-24 min-h-[300px] overflow-hidden">
+    <div class="relative py-8 sm:py-16 mb-16 sm:mb-24 min-h-[300px] overflow-hidden">
       <!-- Background wrapper with brushstroke -->
+      <img 
+        src="/images/brushStrokeBluepastel-mobile.svg"
+        alt=""
+        class="absolute left-1/2 w-[130%] max-w-none opacity-0 animate-brush-fade sm:hidden"
+        style="top: 0; transform: translateX(-50%); height: 100%; animation-delay: 200ms;"
+        inert 
+      />
       <img 
         src="/images/brushStrokeBluepastel.svg"
         alt=""
-        class="absolute left-1/2 -translate-x-1/2 w-full md:w-[120%] max-w-none opacity-0 animate-brush-fade"
-        style="top: -10%; height: 120%; animation-delay: 200ms;"
+        class="absolute left-1/2 w-[120%] max-w-none opacity-0 animate-brush-fade hidden sm:block"
+        style="top: 0; transform: translateX(-50%); height: 100%; animation-delay: 200ms;"
         inert 
       />
       
-
       <!-- Newsletter content -->
-      <section class="relative px-4 md:px-0">
-        <div class="text-center mb-8 opacity-0 animate-fade-up" style="animation-delay: 300ms">
-          <h2 class="text-2xl font-bold mb-2">[Name of your newsletter]</h2>
-          <p class="text-muted-foreground">Weekly tips and insights from building cool stuff with AI</p>
+      <section class="relative z-10">
+        <div class="text-center mb-6 sm:mb-8 opacity-0 animate-fade-up max-w-md mx-auto px-3 sm:px-4" style="animation-delay: 300ms">
+          <h2 class="text-xl sm:text-2xl font-bold mb-2">[Name of your newsletter]</h2>
+          <p class="text-sm sm:text-base text-muted-foreground">Weekly tips and insights from building cool stuff with AI</p>
         </div>
-        <div class="max-w-xl mx-auto opacity-0 animate-fade-up" style="animation-delay: 400ms">
+        <div class="max-w-md mx-auto px-3 sm:px-4 opacity-0 animate-fade-up" style="animation-delay: 400ms">
           <form 
             id="newsletter-form" 
-            class="flex gap-2"
+            class="flex flex-col sm:flex-row gap-2 w-full"
           >
             <input 
               type="email" 
               name="email"
               placeholder="Enter your email address" 
-              class="flex-1 h-10 px-4 rounded-md bg-background ring-1 ring-input transition-all duration-300 focus:ring-2 focus:ring-accent"
+              class="h-10 px-3 sm:px-4 rounded-md bg-background ring-1 ring-input transition-all duration-300 focus:ring-2 focus:ring-accent w-full text-sm sm:text-base"
               required
             />
             <Button 
               type="submit" 
               variant="accent" 
-              className="h-10"
+              className="h-10 whitespace-nowrap w-full sm:w-auto text-sm sm:text-base"
               id="submit-button"
             >
               Subscribe
             </Button>
           </form>
-          <p class="text-sm text-muted-foreground mt-2 text-center">
+          <p class="text-xs sm:text-sm text-muted-foreground mt-2 text-center">
             No spam. Unsubscribe at any time.
           </p>
         </div>
@@ -155,7 +161,7 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 
      <!-- Free Resources and Guides -->
      <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Free Resources & Guides</h2>
+      <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Free Resources & Guides</h2>
       <div class="space-y-8">
         <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
           <span class="text-xl animate-bounce-once">📖</span>
@@ -184,7 +190,7 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 
     <!-- Cool Things I Did -->
     <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Cool things I've built</h2>
+      <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Cool things I've built</h2>
       <div class="space-y-8">
         <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
           <span class="text-xl animate-bounce-once">🛟</span>
@@ -205,7 +211,7 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 
     <!-- What I'm working on -->
     <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">What I'm working on</h2>
+      <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">What I'm working on</h2>
       <div class="space-y-8">
         <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
           <span class="text-xl animate-bounce-once">🎬</span>
@@ -226,7 +232,7 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 
     <!-- Work with Me -->
     <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Work with Me</h2>
+      <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">Work with Me</h2>
       <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
         <span class="text-xl animate-bounce-once">🤝</span>
         <div>
@@ -244,8 +250,8 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
    
 
     <!-- My Product Stack -->
-    <section class="mb-16">
-      <h2 class="text-2xl font-bold mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">My Product Stack</h2>
+    <section class="mb-8 sm:mb-12">
+      <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 opacity-0 animate-fade-up" style="animation-delay: 100ms">My Product Stack</h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4 opacity-0 project-card" style="animation-delay: 200ms">
           <span class="text-xl animate-bounce-once">⚡</span>
