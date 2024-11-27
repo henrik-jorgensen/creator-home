@@ -7,47 +7,63 @@ import { MessageSquare } from 'lucide-react';
 // You can move this to a separate data file later
 const projects = [
   {
-    title: "revid.ai",
-    description: "AI-powered video generation platform that helps creators automate their content creation process. Built with OpenAI's GPT-4 and Replicate.",
+    title: "greatcoffee.now",
+    description: "A coffee discovery platform helping people find and enjoy great coffee wherever they are. Built with Next.js, Supabase, and Google Maps API.",
     url: "https://revid.ai",
-    icon: "🎥"
+    icon: "☕"
   },
   {
-    title: "SuperX.so",
-    description: "Growth automation tool for Twitter/X. Helps creators grow their audience through smart engagement strategies.",
-    url: "https://superx.so",
-    icon: "📈"
-  },
-  {
-    title: "AI Meme Generator",
+    title: "AI meme generator",
     description: "Experimental project that generates memes using AI. Built with Stable Diffusion and GPT-3.5 for caption generation.",
     url: "#",
     icon: "😄"
   },
   {
-    title: "TweetHunter Clone",
-    description: "A failed experiment that taught me valuable lessons about Twitter API integration and user needs.",
+    title: "Product Hunt clone",
+    description: "A weekend project that taught me about product discovery and community building. Failed spectacularly but learned valuable lessons about MVP validation.",
     url: "#",
-    icon: "🐦"
+    icon: "🚀"
   }
 ];
 ---
 
-<Layout title="Projects - Henrik's home">
+<Layout title="Cool Stuff - creator-home">
   <main class="container mx-auto px-4 py-16 max-w-5xl">
     <!-- Hero Section -->
     <section>
-      <h1 class="text-4xl font-bold mb-4">Projects</h1>
+      <h1 class="text-4xl font-bold mb-4">Cool Stuff</h1>
       <p class="text-lg text-muted-foreground">
-        A collection of software products I've built and shipped. Some successful, some not so much - but all of them taught me valuable lessons.
+        A collection of things I've built and shipped. Some successful, some not so much - but each one has been a fun adventure and learning experience.
       </p>
+    </section>
+
+    <!-- Get in Touch -->
+    <section class="mt-8 mb-12">
+      <div class="bg-muted/50 border rounded-lg p-8">
+        <div class="flex items-start gap-4">
+          <span class="text-xl">💡</span>
+          <div>
+            <h2 class="text-xl font-bold mb-2">Have a project idea?</h2>
+            <p class="text-muted-foreground mb-3">
+              I'm always interested in hearing about new projects and potential collaborations.
+            </p>
+            <a 
+              href="mailto:your@email.com" 
+              class="link-with-icon"
+            >
+              Let's talk about it
+              <MessageSquare className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Active Projects -->
     <section class="mt-12">
       <h2 class="text-2xl font-bold mb-8">Active Projects</h2>
       <div class="space-y-8">
-        {projects.slice(0, 2).map(project => (
+        {projects.slice(0, 1).map(project => (
           <ProjectCard {...project} />
         ))}
       </div>
@@ -57,7 +73,7 @@ const projects = [
     <section class="mt-12">
       <h2 class="text-2xl font-bold mb-8">Past Projects</h2>
       <div class="space-y-8">
-        {projects.slice(2).map(project => (
+        {projects.slice(1).map(project => (
           <ProjectCard {...project} />
         ))}
       </div>
@@ -73,28 +89,6 @@ const projects = [
           url="https://github.com/yourusername/creator-home"
           icon="⚡"
         />
-      </div>
-    </section>
-
-    <!-- Get in Touch -->
-    <section class="mt-12">
-      <div class="bg-muted/50 border rounded-lg p-8">
-        <div class="flex items-start gap-4">
-          <span class="text-xl">💡</span>
-          <div>
-            <h2 class="text-xl font-bold mb-2">Have a project idea?</h2>
-            <p class="text-muted-foreground mb-3">
-              I'm always interested in hearing about new projects and potential collaborations.
-            </p>
-            <a 
-              href="mailto:your@email.com" 
-              class="inline-flex items-center gap-1 text-blue-500 hover:text-blue-600 font-medium"
-            >
-              Let's talk about it
-              <MessageSquare className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   </main>

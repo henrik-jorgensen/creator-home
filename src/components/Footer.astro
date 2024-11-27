@@ -1,52 +1,72 @@
 ---
-import { Twitter, Github, Linkedin, Instagram } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Github, Linkedin, Instagram } from 'lucide-react';
 ---
 
 <footer class="py-8 border-t">
   <div class="container mx-auto px-4 max-w-5xl">
     <div class="flex flex-col items-center gap-6">
       <div class="flex justify-center gap-4">
-        <Button variant="ghost" size="icon" asChild>
-          <a href="https://x.com/username" aria-label="Twitter">
-            <Twitter className="w-5 h-5" />
-          </a>
-        </Button>
-        <Button variant="ghost" size="icon" asChild>
-          <a href="https://github.com/username" aria-label="GitHub">
-            <Github className="w-5 h-5" />
-          </a>
-        </Button>
-        <Button variant="ghost" size="icon" asChild>
-          <a href="https://linkedin.com/in/username" aria-label="LinkedIn">
-            <Linkedin className="w-5 h-5" />
-          </a>
-        </Button>
-        <Button variant="ghost" size="icon" asChild>
-          <a href="https://instagram.com/username" aria-label="Instagram">
-            <Instagram className="w-5 h-5" />
-          </a>
-        </Button>
-        <Button variant="ghost" size="icon" asChild>
-          <a href="https://threads.net/@username" aria-label="Threads">
-            <svg 
-              viewBox="0 0 24 24" 
-              class="w-5 h-5" 
-              fill="none" 
-              stroke="currentColor" 
-              stroke-width="2" 
-              stroke-linecap="round" 
-              stroke-linejoin="round"
-            >
-              <path d="M17.75 2H6.25C3.9 2 2 3.9 2 6.25v11.5C2 20.1 3.9 22 6.25 22h11.5c2.35 0 4.25-1.9 4.25-4.25V6.25C22 3.9 20.1 2 17.75 2Z" />
-              <path d="M12 7v10" />
-              <path d="M8 9v6a3 3 0 0 0 6 0V8.5A4.5 4.5 0 0 1 18.5 13" />
-            </svg>
-          </a>
-        </Button>
+        <a 
+          href="https://x.com/username" 
+          aria-label="X (formerly Twitter)"
+          class="p-2 rounded-md hover:bg-accent text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <svg 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            aria-hidden="true"
+            class="w-5 h-5"
+          >
+            <path 
+              fill="currentColor" 
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            />
+          </svg>
+        </a>
+        <a 
+          href="https://github.com/username" 
+          aria-label="GitHub"
+          class="p-2 rounded-md hover:bg-accent text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Github className="w-5 h-5" />
+        </a>
+        <a 
+          href="https://linkedin.com/in/username" 
+          aria-label="LinkedIn"
+          class="p-2 rounded-md hover:bg-accent text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Linkedin className="w-5 h-5" />
+        </a>
+        <a 
+          href="https://instagram.com/username" 
+          aria-label="Instagram"
+          class="p-2 rounded-md hover:bg-accent text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Instagram className="w-5 h-5" />
+        </a>
+        <a 
+          href="https://threads.net/@username" 
+          aria-label="Threads"
+          class="p-2 rounded-md hover:bg-accent text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <svg 
+            viewBox="0 0 24 24" 
+            class="w-5 h-5" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+          >
+            <path d="M17.75 2H6.25C3.9 2 2 3.9 2 6.25v11.5C2 20.1 3.9 22 6.25 22h11.5c2.35 0 4.25-1.9 4.25-4.25V6.25C22 3.9 20.1 2 17.75 2Z" />
+            <path d="M12 7v10" />
+            <path d="M8 9v6a3 3 0 0 0 6 0V8.5A4.5 4.5 0 0 1 18.5 13" />
+          </svg>
+        </a>
       </div>
       <p class="text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Henrik's Home. All rights reserved.
+        © {new Date().getFullYear()} creator-home. All rights reserved.
       </p>
     </div>
   </div>
