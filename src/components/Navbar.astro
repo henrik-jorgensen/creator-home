@@ -1,4 +1,7 @@
 ---
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
 const currentPath = new URL(Astro.request.url).pathname;
 
 function isCurrentPage(path: string): boolean {
@@ -28,7 +31,8 @@ const navItems = [
         />
       </a>
       
-      <div class="flex gap-6">
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex gap-6">
         {navItems.map(({ href, label }) => (
           <a 
             href={href}
@@ -49,6 +53,95 @@ const navItems = [
           </a>
         ))}
       </div>
+
+      <!-- Mobile Menu Button -->
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        class="md:hidden"
+        aria-label="Toggle Menu"
+        data-toggle-nav
+      >
+        <Menu className="w-5 h-5" />
+      </Button>
+
+      <!-- Mobile Menu Overlay -->
+      <div 
+        class="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 hidden" 
+        data-nav-overlay
+      >
+        <!-- Mobile Menu Panel -->
+        <div 
+          class="fixed inset-y-0 right-0 w-3/4 max-w-sm bg-background border-l shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out"
+          data-nav-panel
+        >
+          <div class="flex flex-col p-6 space-y-4">
+            {navItems.map(({ href, label }) => (
+              <a 
+                href={href}
+                class={`
+                  text-lg font-medium py-2
+                  ${isCurrentPage(href) 
+                    ? 'text-primary'
+                    : 'text-muted-foreground'
+                  }
+                `}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</nav> 
+</nav>
+
+<script>
+  // Mobile menu functionality
+  const toggleButton = document.querySelector('[data-toggle-nav]');
+  const overlay = document.querySelector('[data-nav-overlay]');
+  const panel = document.querySelector('[data-nav-panel]');
+  let isOpen = false;
+
+  function toggleMenu() {
+    isOpen = !isOpen;
+    
+    if (isOpen) {
+      overlay?.classList.remove('hidden');
+      // Wait a frame before adding translate-x-0 to trigger animation
+      requestAnimationFrame(() => {
+        panel?.classList.remove('translate-x-full');
+      });
+    } else {
+      panel?.classList.add('translate-x-full');
+      // Wait for animation to finish before hiding overlay
+      setTimeout(() => {
+        overlay?.classList.add('hidden');
+      }, 300);
+    }
+  }
+
+  toggleButton?.addEventListener('click', toggleMenu);
+
+  // Close menu when clicking overlay
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      toggleMenu();
+    }
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) {
+      toggleMenu();
+    }
+  });
+</script>
+
+<style>
+  /* Prevent body scroll when menu is open */
+  :global(body.menu-open) {
+    overflow: hidden;
+  }
+</style> 
