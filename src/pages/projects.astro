@@ -31,17 +31,17 @@ const projects = [
   <main class="container mx-auto px-4 py-16 max-w-5xl">
     <!-- Hero Section -->
     <section>
-      <h1 class="text-4xl font-bold mb-4">Cool Stuff</h1>
-      <p class="text-lg text-muted-foreground">
+      <h1 class="text-4xl font-bold mb-4 opacity-0 animate-fade-up" style="animation-delay: 100ms">Cool Stuff</h1>
+      <p class="text-lg text-muted-foreground opacity-0 animate-fade-up" style="animation-delay: 200ms">
         A collection of things I've built and shipped. Some successful, some not so much - but each one has been a fun adventure and learning experience.
       </p>
     </section>
 
     <!-- Get in Touch -->
     <section class="mt-8 mb-12">
-      <div class="bg-muted/50 border rounded-lg p-8">
+      <div class="bg-muted/50 border rounded-lg p-8 opacity-0 animate-fade-up" style="animation-delay: 300ms">
         <div class="flex items-start gap-4">
-          <span class="text-xl">💡</span>
+          <span class="text-xl animate-bounce-once">💡</span>
           <div>
             <h2 class="text-xl font-bold mb-2">Have a project idea?</h2>
             <p class="text-muted-foreground mb-3">
@@ -61,35 +61,83 @@ const projects = [
 
     <!-- Active Projects -->
     <section class="mt-12">
-      <h2 class="text-2xl font-bold mb-8">Active Projects</h2>
+      <h2 class="text-2xl font-bold mb-8 opacity-0 animate-fade-up" style="animation-delay: 400ms">Active Projects</h2>
       <div class="space-y-8">
-        {projects.slice(0, 1).map(project => (
-          <ProjectCard {...project} />
+        {projects.slice(0, 1).map((project, index) => (
+          <div class="opacity-0 animate-fade-up" style={`animation-delay: ${500 + (index * 100)}ms`}>
+            <ProjectCard {...project} />
+          </div>
         ))}
       </div>
     </section>
 
     <!-- Past Projects -->
     <section class="mt-12">
-      <h2 class="text-2xl font-bold mb-8">Past Projects</h2>
+      <h2 class="text-2xl font-bold mb-8 opacity-0 animate-fade-up" style="animation-delay: 600ms">Past Projects</h2>
       <div class="space-y-8">
-        {projects.slice(1).map(project => (
-          <ProjectCard {...project} />
+        {projects.slice(1).map((project, index) => (
+          <div class="opacity-0 animate-fade-up" style={`animation-delay: ${700 + (index * 100)}ms`}>
+            <ProjectCard {...project} />
+          </div>
         ))}
       </div>
     </section>
 
     <!-- Open Source -->
     <section class="mt-12">
-      <h2 class="text-2xl font-bold mb-8">Open Source</h2>
+      <h2 class="text-2xl font-bold mb-8 opacity-0 animate-fade-up" style="animation-delay: 800ms">Open Source</h2>
       <div class="space-y-8">
-        <ProjectCard 
-          title="creator-home"
-          description="The source code for this website. Built with Astro, Shadcn UI, and TailwindCSS."
-          url="https://github.com/yourusername/creator-home"
-          icon="⚡"
-        />
+        <div class="opacity-0 animate-fade-up" style="animation-delay: 900ms">
+          <ProjectCard 
+            title="creator-home"
+            description="The source code for this website. Built with Astro, Shadcn UI, and TailwindCSS."
+            url="https://github.com/yourusername/creator-home"
+            icon="⚡"
+          />
+        </div>
       </div>
     </section>
   </main>
 </Layout> 
+
+<style>
+  /* Add fade-up animation */
+  .animate-fade-up {
+    animation: fadeUp 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0);
+    }
+  }
+
+  /* Add bounce animation for emojis */
+  .animate-bounce-once {
+    animation: bounce 0.6s cubic-bezier(0.36, 0, 0.66, -0.56) 500ms;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25%); }
+  }
+
+  /* Project card hover animation */
+  .project-card {
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .project-card:hover .text-xl {
+    animation: bounce 0.6s cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+</style> 

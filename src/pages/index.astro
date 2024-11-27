@@ -23,8 +23,8 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
       <img 
         src="/images/brushStrokeBluepastel.svg"
         alt=""
-        class="absolute left-1/2 -translate-x-1/2 w-[120%] max-w-none animate-brush-intro"
-        style="top: -10%; height: 120%; "
+        class="absolute left-1/2 -translate-x-1/2 w-[120%] max-w-none opacity-0 animate-brush-fade"
+        style="top: -10%; height: 120%; animation-delay: 200ms;"
         inert 
       />
       
@@ -334,21 +334,6 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
     100% { transform: rotate(0deg); }
   }
 
-  /* Update the brush intro animation to not affect opacity */
-  .animate-brush-intro {
-    animation: brushIntro 0.8s cubic-bezier(0.4, 0, 0.2, 1) 300ms forwards;
-    animation-iteration-count: 1; /* Ensure it only runs once */
-  }
-
-  @keyframes brushIntro {
-    0% {
-      transform: translate(-50%, -5px);
-    }
-    100% {
-      transform: translate(-50%, 0);
-    }
-  }
-
   /* Smooth transition for input focus */
   input:focus {
     outline: none;
@@ -377,5 +362,21 @@ import { ArrowRight, Download, ExternalLink, Mail } from 'lucide-react';
 
   .project-card:hover .text-xl {
     animation: bounce 0.6s cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+
+  /* Special fade animation for brush stroke that preserves horizontal centering */
+  .animate-brush-fade {
+    animation: brushFade 0.5s ease-out forwards;
+  }
+
+  @keyframes brushFade {
+    from { 
+      opacity: 0; 
+      transform: translate(-50%, 20px);
+    }
+    to { 
+      opacity: 1; 
+      transform: translate(-50%, 0);
+    }
   }
 </style>
