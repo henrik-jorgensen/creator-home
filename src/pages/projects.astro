@@ -30,7 +30,7 @@ const projects = [
 <Layout title="Cool Stuff - creator-home">
   <main class="container mx-auto px-4 py-16 max-w-5xl">
     <!-- Hero Section -->
-    <section>
+    <section class="mb-16">
       <h1 class="text-4xl font-bold mb-4 opacity-0 animate-fade-up" style="animation-delay: 100ms">Cool Stuff</h1>
       <p class="text-lg text-muted-foreground opacity-0 animate-fade-up" style="animation-delay: 200ms">
         A collection of things I've built and shipped. Some successful, some not so much - but each one has been a fun adventure and learning experience.
@@ -38,7 +38,7 @@ const projects = [
     </section>
 
     <!-- Get in Touch -->
-    <section class="mt-8 mb-12">
+    <section class="mb-16">
       <div class="bg-muted/50 border rounded-lg p-8 opacity-0 animate-fade-up" style="animation-delay: 300ms">
         <div class="flex items-start gap-4">
           <span class="text-xl animate-bounce-once">💡</span>
@@ -60,7 +60,7 @@ const projects = [
     </section>
 
     <!-- Active Projects -->
-    <section class="mt-12">
+    <section class="mb-16">
       <h2 class="text-2xl font-bold mb-8 opacity-0 animate-fade-up" style="animation-delay: 400ms">Active Projects</h2>
       <div class="space-y-8">
         {projects.slice(0, 1).map((project, index) => (
@@ -72,7 +72,7 @@ const projects = [
     </section>
 
     <!-- Past Projects -->
-    <section class="mt-12">
+    <section class="mb-16">
       <h2 class="text-2xl font-bold mb-8 opacity-0 animate-fade-up" style="animation-delay: 600ms">Past Projects</h2>
       <div class="space-y-8">
         {projects.slice(1).map((project, index) => (
@@ -84,7 +84,7 @@ const projects = [
     </section>
 
     <!-- Open Source -->
-    <section class="mt-12">
+    <section class="mb-16">
       <h2 class="text-2xl font-bold mb-8 opacity-0 animate-fade-up" style="animation-delay: 800ms">Open Source</h2>
       <div class="space-y-8">
         <div class="opacity-0 animate-fade-up" style="animation-delay: 900ms">
