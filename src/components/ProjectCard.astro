@@ -5,16 +5,17 @@ interface Props {
   title: string;
   description: string;
   url: string;
-  icon?: string;
+  icon: string;
+  titleClass?: string;
 }
 
-const { title, description, url, icon = "🚀" } = Astro.props;
+const { title, description, url, icon, titleClass = "subheading" } = Astro.props;
 ---
 
-<div class="flex items-start gap-4">
+<div class="flex items-start gap-4 project-card">
   <span class="text-xl animate-bounce-once">{icon}</span>
   <div>
-    <h3 class="font-semibold mb-2 text-base sm:text-lg">{title}</h3>
+    <h3 class={`font-semibold mb-2 ${titleClass}`}>{title}</h3>
     <p class="text-muted-foreground mb-2">{description}</p>
     {url && (
       <a 

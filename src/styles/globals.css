@@ -4,7 +4,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: 220 13% 51%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
@@ -27,11 +27,13 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
+    --secondary-heading: 43 85% 48%;
+    --link: 215 24% 40%;
   }
   .dark {
     --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    --foreground: 220 13% 51%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
@@ -53,7 +55,8 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
+    --link: 215 24% 40%;
   }
   
   * {
@@ -66,17 +69,30 @@
   
   /* Add base styles for links */
   a:not([class]) {
-    @apply text-primary hover:text-primary/90 transition-colors;
+    @apply text-[#4B6584] hover:text-[#4B6584]/90 transition-colors;
   }
   
   /* Style for links with icons */
   .link-with-icon {
-    @apply inline-flex items-center gap-1 text-primary hover:text-primary/90 font-medium transition-colors;
+    @apply inline-flex items-center gap-1 text-[#4B6584] hover:text-[#4B6584]/90 font-medium transition-colors;
   }
 
   /* Style for social icons in footer */
   .social-icon-button {
     @apply text-muted-foreground hover:text-foreground transition-colors;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #1A2980;
+  }
+
+  .heading-primary {
+    color: #1A2980;
+  }
+
+  /* Add style for subheadings */
+  .subheading {
+    color: #D3A625;
   }
 }
 

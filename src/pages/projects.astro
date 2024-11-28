@@ -65,7 +65,7 @@ const projects = [
       <div class="space-y-8">
         {projects.slice(0, 1).map((project, index) => (
           <div class="opacity-0 animate-fade-up" style={`animation-delay: ${500 + (index * 100)}ms`}>
-            <ProjectCard {...project} />
+            <ProjectCard {...project} titleClass="subheading" />
           </div>
         ))}
       </div>
