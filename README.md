@@ -67,7 +67,7 @@ cd creator-home
 npm install
 ```
 
-2. Create a `.env.local` file in the project root as mentioned in the Hashnode section above:
+2. Create a `.env.local` file in the project root and add your Hashnode credentials:
 ```env
 # Hashnode Posts Configuration
 PUBLIC_HASHNODE_HOST="your-blog.hashnode.dev"
@@ -76,6 +76,17 @@ PUBLIC_HASHNODE_HOST="your-blog.hashnode.dev"
 PUBLIC_HASHNODE_PUBLICATION_ID="your_publication_id"
 HASHNODE_ACCESS_TOKEN="your_personal_access_token"
 ```
+
+    2.1 How to get your keys from Hashnode:
+    - Log into your Hashnode account
+    - Go to Account Settings → Developer Settings
+    - Copy your Publication ID and Access Token
+    - For the Host, use your Hashnode blog URL without 'https://' (e.g., "johndoe.hashnode.dev")
+    - Paste them into the `.env.local` file
+
+    That's it! Your blog posts and newsletter will now work automatically. No coding required.
+
+    > **Note**: Keep your Access Token private - don't share it or commit it to public repositories.
 
 3. Customize the site by editing:
    - `src/pages/index.astro` - Your home page content, newsletter name, and current projects
