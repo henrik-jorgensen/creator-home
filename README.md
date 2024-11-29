@@ -8,8 +8,8 @@ A modern, animated personal website template for creators who build and ship sof
 - **Beautiful Animations**: Subtle fade-ups and bounces that bring your content to life
 - **Fully Responsive**: Looks great on all devices
 - **Component-Based**: Built with reusable components using Shadcn UI
-- **Blog Integration**: Ready to connect with your Hashnode blog
-- **Showcase your work**: Minimalistic cards to showcase your work
+- **Post Integration**: Ready to connect with your Hashnode and list your posts
+- **Showcase your work**: Minimalistic cards to tell about the cool stuff you've made
 - **Newsletter Ready**: Built-in newsletter subscription system
 
 <div align="center">
