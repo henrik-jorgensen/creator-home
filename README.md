@@ -1,16 +1,16 @@
-# Creator Home 🏠
+# Creator Home
 
 A modern, animated personal website template for creators who build and ship software products. Built with Astro, Shadcn UI, and TailwindCSS.
 
 ## ✨ Features
 
-- 🚀 **Lightning Fast**: Built with Astro for exceptional performance
-- 🎨 **Beautiful Animations**: Subtle fade-ups and bounces that bring your content to life
-- 📱 **Fully Responsive**: Looks great on all devices
-- 🌙 **Component-Based**: Built with reusable components using Shadcn UI
-- 📝 **Blog Integration**: Ready to connect with your Hashnode blog
-- 🎯 **Project Showcase**: Beautiful cards to showcase your work
-- 📧 **Newsletter Ready**: Built-in newsletter subscription system
+- **Lightning Fast**: Built with Astro for exceptional performance
+- **Beautiful Animations**: Subtle fade-ups and bounces that bring your content to life
+- **Fully Responsive**: Looks great on all devices
+- **Component-Based**: Built with reusable components using Shadcn UI
+- **Blog Integration**: Ready to connect with your Hashnode blog
+- **Project Showcase**: Beautiful cards to showcase your work
+- **Newsletter Ready**: Built-in newsletter subscription system
 
 <div align="center">
   <img src="public/images/docs/features/projects.png" width="400" alt="Projects" />
@@ -18,14 +18,14 @@ A modern, animated personal website template for creators who build and ship sof
   <img src="public/images/docs/features/newsletter.png" width="400" alt="Newsletter" />
 </div>
 
-## 📱 Responsive Design
+## Responsive Design
 
 <div align="center">
   <img src="public/images/docs/mobile/mobile-home.png" width="250" alt="Mobile Home" />
   <img src="public/images/docs/mobile/mobile-nav.png" width="250" alt="Mobile Navigation" />
 </div>
 
-## 🚀 Quick Start
+## Quick Start
 
 1. Clone this repository:
 
@@ -37,11 +37,9 @@ npm create astro@latest -- --template basics
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
 
-## 🚀 Project Structure
+## Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
 
@@ -65,20 +63,7 @@ There's nothing special about `src/components/`, but that's where we like to put
 
 Any static assets, like images, can be placed in the `public/` directory.
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 🔌 Hashnode Integration
+## Hashnode Integration
 
 This template comes with built-in integration for your Hashnode blog and newsletter. All you need is three keys from your Hashnode account to get started.
 
@@ -109,10 +94,18 @@ That's it! Your blog posts and newsletter will now work automatically. No coding
 
 > **Note**: Keep your Access Token private - don't share it or commit it to public repositories.
 
-## 👀 Want to learn more about Astro?
+## Commands
 
-This template is built with Astro. To learn more about Astro itself:
-- Check out [Astro's documentation](https://docs.astro.build)
-- Join the [Astro Discord server](https://astro.build/chat)
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
 
 Created with ❤️ by [Your Name](https://github.com/yourusername)
