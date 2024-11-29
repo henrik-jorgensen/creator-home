@@ -2,6 +2,8 @@
 
 A modern, animated personal website template for creators who build and ship software products. Built with Astro, Shadcn UI, and TailwindCSS.
 
+![Creator Home Demo](public/images/docs/hero.gif)
+
 ## ✨ Features
 
 - **Lightning Fast**: Built with Astro for exceptional performance
@@ -14,15 +16,16 @@ A modern, animated personal website template for creators who build and ship sof
 
 <div align="center">
   <img src="public/images/docs/features/projects.png" width="400" alt="Projects" />
-  <img src="public/images/docs/features/blog.png" width="400" alt="Blog Integration" />
-  <img src="public/images/docs/features/newsletter.png" width="400" alt="Newsletter" />
+  <img src="public/images/docs/features/posts.png" width="400" alt="Posts Integration" />
+  <img src="public/images/docs/features/about.png" width="400" alt="About" />
 </div>
 
 ## Responsive Design
 
 <div align="center">
   <img src="public/images/docs/mobile/mobile-home.png" width="250" alt="Mobile Home" />
-  <img src="public/images/docs/mobile/mobile-nav.png" width="250" alt="Mobile Navigation" />
+  <img src="public/images/docs/mobile/mobile-posts.png" width="250" alt="Mobile Posts" />
+  <img src="public/images/docs/mobile/mobile-projects.png" width="250" alt="Mobile Projects" />
 </div>
 
 ## Hashnode Integration
