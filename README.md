@@ -93,7 +93,8 @@ npm run preview
 ```
 
 7. Deploy
-    - Deploy the `dist` folder to your preferred hosting platform (Vercel, Netlify, etc.)
-
+```bash
+Deploy the `dist` folder to your preferred hosting platform (Vercel, Netlify, etc.)
+```
 
 Created with ❤️ by [Your Name](https://github.com/yourusername)
