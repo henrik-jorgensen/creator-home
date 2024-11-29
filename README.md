@@ -16,7 +16,6 @@ A modern, animated personal website template for creators who build and ship sof
 
 <div align="center">
   <img src="public/images/docs/features/projects.png" width="400" alt="Projects" />
-  <img src="public/images/docs/features/posts.png" width="400" alt="Posts Integration" />
   <img src="public/images/docs/features/about.png" width="400" alt="About" />
 </div>
 
