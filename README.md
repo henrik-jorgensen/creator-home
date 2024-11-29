@@ -27,41 +27,39 @@ A modern, animated personal website template for creators who build and ship sof
 
 ## Quick Start
 
-1. Clone this repository:
-
-```sh
-npm create astro@latest -- --template basics
+1. Clone this repository and install dependencies:
+```bash
+git clone https://github.com/yourusername/creator-home.git
+cd creator-home
+npm install
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-
-
-## Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+2. Create a `.env.local` file in the project root and add your Hashnode credentials:
+```env
+PUBLIC_HASHNODE_PUBLICATION_ID=your_publication_id
+PUBLIC_HASHNODE_HOST=your_blog_url    # e.g., "johndoe.hashnode.dev"
+HASHNODE_ACCESS_TOKEN=your_access_token
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+3. Customize the site by editing:
+   - `src/pages/index.astro` - Your home page content, newsletter name, and current projects
+   - `src/pages/about.astro` - Your personal journey and background
+   - `src/pages/projects.astro` - Your project showcase
+   - `src/pages/posts.astro` - Your newsletter posts and layout
+   - `src/components/Navbar.astro` - Your logo and navigation links
+   - `src/components/Footer.astro` - Your social media links
+   - `public/images` - Your images and assets
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+4. Start the development server:
+```bash
+npm run dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+5. Build and deploy:
+```bash
+npm run build
+```
+Deploy the `dist` folder to your preferred hosting platform (Vercel, Netlify, etc.)
 
 ## Hashnode Integration
 
