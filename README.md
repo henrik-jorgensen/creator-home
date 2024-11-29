@@ -80,7 +80,7 @@ HASHNODE_ACCESS_TOKEN="your_personal_access_token"
 npm run dev
 ```
 
-Runs on http://localhost:4321/
+    - Runs on http://localhost:4321/
 
 5. Build your production site to `./dist/`:
 ```bash
@@ -93,7 +93,7 @@ npm run preview
 ```
 
 7. Deploy
-Deploy the `dist` folder to your preferred hosting platform (Vercel, Netlify, etc.)
+    - Deploy the `dist` folder to your preferred hosting platform (Vercel, Netlify, etc.)
 
 
 Created with ❤️ by [Your Name](https://github.com/yourusername)
