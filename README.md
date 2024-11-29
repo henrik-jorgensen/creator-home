@@ -27,7 +27,7 @@ A modern, animated personal website template for creators who build and ship sof
 
 ## Hashnode Integration
 
-This template comes with built-in integration for your Hashnode blog and newsletter. All you need is three keys from your Hashnode account to get started.
+This website comes with built-in integration for your Hashnode newsletter. All you need is three keys from your Hashnode account to get started.
 
 ### What's Included
 - **Blog Posts**: Automatically displays your Hashnode blog posts
