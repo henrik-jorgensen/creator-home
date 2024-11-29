@@ -80,22 +80,20 @@ HASHNODE_ACCESS_TOKEN="your_personal_access_token"
 npm run dev
 ```
 
-5. Build and deploy:
+Runs on http://localhost:4321/
+
+5. Build your production site to `./dist/`:
 ```bash
 npm run build
 ```
+
+6. Preview your build locally, before deploying:
+```bash
+npm run preview
+```
+
+7. Deploy
 Deploy the `dist` folder to your preferred hosting platform (Vercel, Netlify, etc.)
-
-## Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
 
 
 Created with ❤️ by [Your Name](https://github.com/yourusername)
