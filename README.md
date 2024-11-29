@@ -25,6 +25,39 @@ A modern, animated personal website template for creators who build and ship sof
   <img src="public/images/docs/mobile/mobile-nav.png" width="250" alt="Mobile Navigation" />
 </div>
 
+## Hashnode Integration
+
+This template comes with built-in integration for your Hashnode blog and newsletter. All you need is three keys from your Hashnode account to get started.
+
+### What's Included
+- **Blog Posts**: Automatically displays your Hashnode blog posts
+- **Newsletter**: Lets visitors subscribe to your Hashnode newsletter
+- **Error Handling**: Friendly error messages if something goes wrong
+- **Loading States**: Nice loading animations while content is being fetched
+
+### Quick Setup
+
+1. Create a `.env.local` file in your project root:
+```env
+# Hashnode Posts Configuration
+PUBLIC_HASHNODE_HOST="your-blog.hashnode.dev"
+
+# Newsletter Signup Configuration
+PUBLIC_HASHNODE_PUBLICATION_ID="your_publication_id"
+HASHNODE_ACCESS_TOKEN="your_personal_access_token"
+```
+
+2. Get your keys from Hashnode:
+   - Log into your Hashnode account
+   - Go to Account Settings → Developer Settings
+   - Copy your Publication ID and Access Token
+   - For the Host, use your Hashnode blog URL without 'https://' (e.g., "johndoe.hashnode.dev")
+   - Paste them into the `.env.local` file
+
+That's it! Your blog posts and newsletter will now work automatically. No coding required.
+
+> **Note**: Keep your Access Token private - don't share it or commit it to public repositories.
+
 ## Quick Start
 
 1. Clone this repository and install dependencies:
@@ -63,39 +96,6 @@ npm run dev
 npm run build
 ```
 Deploy the `dist` folder to your preferred hosting platform (Vercel, Netlify, etc.)
-
-## Hashnode Integration
-
-This template comes with built-in integration for your Hashnode blog and newsletter. All you need is three keys from your Hashnode account to get started.
-
-### What's Included
-- **Blog Posts**: Automatically displays your Hashnode blog posts
-- **Newsletter**: Lets visitors subscribe to your Hashnode newsletter
-- **Error Handling**: Friendly error messages if something goes wrong
-- **Loading States**: Nice loading animations while content is being fetched
-
-### Quick Setup
-
-1. Create a `.env.local` file in your project root:
-```env
-# Hashnode Posts Configuration
-PUBLIC_HASHNODE_HOST="your-blog.hashnode.dev"
-
-# Newsletter Signup Configuration
-PUBLIC_HASHNODE_PUBLICATION_ID="your_publication_id"
-HASHNODE_ACCESS_TOKEN="your_personal_access_token"
-```
-
-2. Get your keys from Hashnode:
-   - Log into your Hashnode account
-   - Go to Account Settings → Developer Settings
-   - Copy your Publication ID and Access Token
-   - For the Host, use your Hashnode blog URL without 'https://' (e.g., "johndoe.hashnode.dev")
-   - Paste them into the `.env.local` file
-
-That's it! Your blog posts and newsletter will now work automatically. No coding required.
-
-> **Note**: Keep your Access Token private - don't share it or commit it to public repositories.
 
 ## Commands
 
