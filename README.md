@@ -9,7 +9,7 @@ A modern, animated personal website template for creators who build and ship sof
 - **Fully Responsive**: Looks great on all devices
 - **Component-Based**: Built with reusable components using Shadcn UI
 - **Blog Integration**: Ready to connect with your Hashnode blog
-- **Project Showcase**: Beautiful cards to showcase your work
+- **Showcase your work**: Minimalistic cards to showcase your work
 - **Newsletter Ready**: Built-in newsletter subscription system
 
 <div align="center">
