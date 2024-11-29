@@ -77,7 +77,7 @@ PUBLIC_HASHNODE_PUBLICATION_ID="your_publication_id"
 HASHNODE_ACCESS_TOKEN="your_personal_access_token"
 ```
 
-    **How to get your keys from Hashnode:**
+    How to get your keys from Hashnode:
 
     - Log into your Hashnode account
     - Go to Account Settings → Developer Settings
@@ -85,9 +85,9 @@ HASHNODE_ACCESS_TOKEN="your_personal_access_token"
     - For the Host, use your Hashnode blog URL without 'https://' (e.g., "johndoe.hashnode.dev")
     - Paste them into the `.env.local` file
 
-   That's it! Your blog posts and newsletter will now work automatically. No coding required.
+    That's it! Your blog posts and newsletter will now work automatically. No coding required.
 
-   > **Note**: Keep your Access Token private - don't share it or commit it to public repositories.
+    Note: Keep your Access Token private - don't share it or commit it to public repositories.
 
 3. Customize the site by editing:
    - `src/pages/index.astro` - Your home page content, newsletter name, and current projects
