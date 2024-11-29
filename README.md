@@ -67,7 +67,7 @@ cd creator-home
 npm install
 ```
 
-2. Create a `.env.local` file in the project root and add your Hashnode credentials:
+2. Create a `.env.local` file in the project root as mentioned in the Hashnode section above:
 ```env
 # Hashnode Posts Configuration
 PUBLIC_HASHNODE_HOST="your-blog.hashnode.dev"
