@@ -80,7 +80,7 @@ HASHNODE_ACCESS_TOKEN="your_personal_access_token"
 npm run dev
 ```
 
-    Runs at http://localhost:4321/
+    http://localhost:4321/
 
 5. Build your production site to `./dist/`:
 ```bash
