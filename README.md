@@ -77,7 +77,7 @@ PUBLIC_HASHNODE_PUBLICATION_ID="your_publication_id"
 HASHNODE_ACCESS_TOKEN="your_personal_access_token"
 ```
 
-    2.1 How to get your keys from Hashnode:
+2.1 How to get your keys from Hashnode:
     - Log into your Hashnode account
     - Go to Account Settings → Developer Settings
     - Copy your Publication ID and Access Token
