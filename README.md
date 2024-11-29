@@ -36,9 +36,12 @@ npm install
 
 2. Create a `.env.local` file in the project root and add your Hashnode credentials:
 ```env
-PUBLIC_HASHNODE_PUBLICATION_ID=your_publication_id
-PUBLIC_HASHNODE_HOST=your_blog_url    # e.g., "johndoe.hashnode.dev"
-HASHNODE_ACCESS_TOKEN=your_access_token
+# Hashnode Posts Configuration
+PUBLIC_HASHNODE_HOST="your-blog.hashnode.dev"
+
+# Newsletter Signup Configuration
+PUBLIC_HASHNODE_PUBLICATION_ID="your_publication_id"
+HASHNODE_ACCESS_TOKEN="your_personal_access_token"
 ```
 
 3. Customize the site by editing:
@@ -75,10 +78,12 @@ This template comes with built-in integration for your Hashnode blog and newslet
 
 1. Create a `.env.local` file in your project root:
 ```env
-# .env.local
-PUBLIC_HASHNODE_PUBLICATION_ID=your_publication_id
-PUBLIC_HASHNODE_HOST=your_blog_url    # e.g., "johndoe.hashnode.dev"
-HASHNODE_ACCESS_TOKEN=your_access_token
+# Hashnode Posts Configuration
+PUBLIC_HASHNODE_HOST="your-blog.hashnode.dev"
+
+# Newsletter Signup Configuration
+PUBLIC_HASHNODE_PUBLICATION_ID="your_publication_id"
+HASHNODE_ACCESS_TOKEN="your_personal_access_token"
 ```
 
 2. Get your keys from Hashnode:
