@@ -97,4 +97,4 @@ npm run preview
 Deploy the `dist` folder to your preferred hosting platform (Vercel, Netlify, etc.)
 ```
 
-Created with ❤️ by [Your Name](https://github.com/yourusername)
+Created with ❤️ by [Henrik Jorgensen](https://github.com/henrik-jorgensen)
